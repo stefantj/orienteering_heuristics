@@ -4,7 +4,6 @@ import copy
 class insertion_step:
 
 	def tw(self, locations, times, start):
-
 		req_time = 1
 
 		for i in range(1, len(locations)-1):
@@ -23,19 +22,22 @@ class insertion_step:
 
 		#req_time = 10 #TIEMPO REQUERIDO
 
-		for i in range(1,len(locations)-1):
-
+		for i in range(1,len(locations)):
+			ind1 = locations[i].id_location;
+			ind2 = locations[i-1].id_location;
 			if i == 1:
 				#locations[i].arrival = self.estimateArrival(i,i+1,times,start)
-				locations[i].arrival = self.estimateArrival(i-1,i,times,start)
+				#locations[i].arrival = self.estimateArrival(i-1,i,times,start)
+				#locations[i].shift = self.Shift( locations, i , i-1, times, start)
+				locations[i].arrival = self.estimateArrival(ind2,ind1,times,start)
 				locations[i].shift = self.Shift( locations, i , i-1, times, start)
 			else:
 				#locations[i].arrival = self.estimateArrival(i,i+1,times,locations[i-1].leave)
-				locations[i].arrival = self.estimateArrival(i-1,i,times,locations[i-1].leave)
+				locations[i].arrival = self.estimateArrival(ind2,ind1,times,locations[i-1].leave)
 				locations[i].shift = self.Shift( locations, i , i-1, times, locations[i-1].leave)
 
-			locations[i].wait = self.wait(locations[i].opening,locations[i].arrival)
-			locations[i].leave = locations[i].arrival + locations[i].wait + locations[i].required_time # req_time
+#			locations[i].wait = 0*self.wait(locations[i].opening,locations[i].arrival)
+			locations[i].leave = locations[i].arrival# + locations[i].wait + locations[i].required_time # req_time
 			locations[i].ratio = self.ratio(locations,i)
 
 		return locations
@@ -136,9 +138,9 @@ class insertion_step:
 		#Since location 0 is the origin and the last one the end of the tour:
 		#Iterate from the second location until the penultimate location
 		for i in range(1,len(Locations)-1):
-			#print "i: ",i
+#			print "i: ",i
 			Locations[i].arrival = self.estimateArrival(0,Locations[i].id_location,times,start)
-			#print "Location arrival: ", Locations[i].arrival
+#			print "Location arrival: ", Locations[i].arrival
 			
 			Locations[i].wait = self.wait(Locations[i].opening, Locations[i].arrival)
 
@@ -336,8 +338,8 @@ class insertion_step:
 			print " "
 		"""
 
-		req_time = 1
-		start = 8
+		req_time = 0
+		start = 0  # what the hell is this
 
 		selected_locations = self.update_stuff(selected_locations,times,start)
 
@@ -360,10 +362,15 @@ class insertion_step:
 
 		"""
 
-		for e in selected_locations:
-			#print "TW --- arrival: ",e.arrival, "closing: ",e.closing
-			if e.arrival >= (e.closing - req_time):
+#		for i in range(len(selected_locations)-1):
+#			if selected_locations[i].arrival >= selected_locations[i].closing:
+#				return False
 
+#		if (selected_locations[len(selected_locations)-1]).arrival >= (selected_locations[len(selected_locations)-1]).closing:
+# Skip this since we have only one constraint.
+		for e in selected_locations:
+			#print e.id_location
+			if e.arrival >= (e.closing - req_time):
 				return False
 		
 		return True 

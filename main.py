@@ -6,7 +6,7 @@ import math
 import time
 from sys import argv 
 
-def print_locations(Locations):
+def print_locations(Locations,start,end):
 	print "TOUR: "
 	print "Start: ",start
 	print "End: ",end
@@ -24,6 +24,8 @@ def print_locations(Locations):
 		print "-- shift: ",e.shift
 		print "-- ratio: ",e.ratio
 		print "-- leave: ",e.leave
+		print "-- xval : ",e.x
+		print "-- yval : ",e.y
 		print " "
 	
 def write_file(Locations,file_name):
@@ -36,31 +38,55 @@ def write_file(Locations,file_name):
 	file.write("\n")
 	file.write("Locations:")
 	file.write("\n\n")
+	xprev=0;
+	yprev=0;
+	aprev=0;
 	for e in Locations:
 		file.write("-- location ID: "+str(e.id_location))
 		file.write("\n")
-		file.write("-- name: "+e.name)
-		file.write("\n")
+#		file.write("-- name: "+e.name)
+#		file.write("\n")
 		file.write("-- score: "+str(e.score))
 		file.write("\n")
-		file.write("-- opening: "+str(e.opening))
-		file.write("\n")
-		file.write("-- closing: "+str(e.closing))
-		file.write("\n")
+#		file.write("-- opening: "+str(e.opening))
+#		file.write("\n")
+#		file.write("-- closing: "+str(e.closing))
+#		file.write("\n")
 		file.write("-- arrival: "+str(e.arrival))
 		file.write("\n")
-		file.write("-- required_time: "+str(e.required_time))
+#		file.write("-- required_time: "+str(e.required_time))
+#		file.write("\n")
+#		file.write("-- wait: "+str(e.wait))
+#		file.write("\n")
+#		file.write("-- max_shift: "+str(e.max_shift))
+#		file.write("\n")
+#		file.write("-- shift: "+str(e.shift))
+#		file.write("\n")
+#		file.write("-- ratio: "+str(e.ratio))
+#		file.write("\n")
+#		file.write("-- leave: "+str(e.leave))
+#		file.write("\n")
+		dist = math.sqrt( pow(float(xprev)-float(e.x),2) + pow(float(yprev)-float(e.y),2));
+		xprev=float(e.x);
+		yprev=float(e.y);
+		file.write("-- dist : "+str(dist));
+		file.write("\n");
+		file.write("-- prev : "+str(aprev));
+		file.write("\n");
+		aprev=e.arrival
+		file.write("-- xval : "+str(e.x))
 		file.write("\n")
-		file.write("-- wait: "+str(e.wait))
-		file.write("\n")
-		file.write("-- max_shift: "+str(e.max_shift))
-		file.write("\n")
-		file.write("-- shift: "+str(e.shift))
-		file.write("\n")
-		file.write("-- ratio: "+str(e.ratio))
-		file.write("\n")
-		file.write("-- leave: "+str(e.leave))
+		file.write("-- yval : "+str(e.y))
 		file.write("\n\n")
+
+	file.close()
+
+def write_julia_file(Locations,file_name):
+	file = open(file_name,"w")
+	file.write("Heur_locs=[")
+	for e in Locations:
+		file.write(str(e.id_location+1)+" ")
+	file.write("]\n");
 
 	file.close()
 
@@ -89,6 +115,8 @@ def getTour(Locations, times, start, end):
 	selected_locations.append(Locations[0])
 	selected_locations.append(Locations[len(Locations)-1])
 
+	#print_locations(selected_locations,start,end);
+
 	req_t = 1
 	loopCounter = 0
 	while len(Locations) > 2:
@@ -96,7 +124,7 @@ def getTour(Locations, times, start, end):
 
 		potential_inserts,local_information = InsertionStep.simulate_insertion(Locations, selected_locations, times)
 		#print "potential_inserts:"
-		#print_locations( potential_inserts )
+		#print_locations( potential_inserts ,start,end)
 		#print "</potential_inserts"
 
 		selected_one =  InsertionStep.select_potential_location(potential_inserts)
@@ -202,14 +230,21 @@ def main(id_file):
 
 	#start = 0 #hours
 	#end = 1236 #hours
-	n = 100 #no. elements
+	n = 224 #no. elements - 2 (start, end)
 
 	#instance = random_instance()
 
-	file_name = 'c_r_rc_100_100/'+'r10'+str(id_file)+'.txt'
+#	file_name = 'c_r_rc_100_100/'+'r10'+str(id_file)+'.txt'
+	path_prefix = 'ILS/TOPTW/' # used when executing from julia
+	file_name = path_prefix+'autogen_100/'+'r10'+str(id_file)+'.txt'
+	julia_file_name = path_prefix+'autogen_100/'+'heur_sol.jl'
 
 	Locations,start,end = instance.load_instance(n,file_name)
 
+	
+	#print_locations(Locations,start,end)
+
+#   Times is the cost. 
 	times = instance.generate_times_for_instances(len(Locations),Locations)
 
 	#print_locations(Locations)
@@ -218,11 +253,11 @@ def main(id_file):
 	#END NEW INVOCATION
 	##########################
 
-	"""
-	print "times:"
-	for e in times:
-		print e
-	"""
+#	"""
+#	print "times:"
+#	for e in times:
+#		print e
+#	"""
 
 	#InsertionStep = insertion_step()
 
@@ -284,11 +319,11 @@ def main(id_file):
 		if SmallestTourSize == -1 or ln_NewTour < SmallestTourSize:
 			SmallestTourSize = ln_NewTour
 
-		#print "++++++++++++++++++++++++++++++++++"
+#		print "++++++++++++++++++++++++++++++++++"
 		if BestFound['ratio'] < TourRatio:
 			#Assign new tour as local optimum
-			#print "======================================"
-			#print "new best found"
+#			print "======================================"
+#			print "new best found"
 			BestFound['tour'] = NewTour
 			BestFound['ratio'] = TourRatio
 
@@ -327,11 +362,14 @@ def main(id_file):
 	bk = getTourRatio( OriginalSolution )
 	ils = getTourRatio( BestFound['tour'] )
 	elapsed_time = time.time() - start_time	
+	if ils==0:
+		ils=1;
 	gap = (ils-bk)/ils
-	#print "OriginalSolution: ", getTourRatio( OriginalSolution )
-	#print "EnhancedSolution: ", getTourRatio( BestFound['tour'] )
-	print nombre_instancia,", ",bk,",",ils,",",gap*100,",",elapsed_time
-	write_file(BestFound['tour'],file_name)
+#	print "OriginalSolution: ", getTourRatio( OriginalSolution )
+#	print "EnhancedSolution: ", getTourRatio( BestFound['tour'] )
+#	print nombre_instancia,", ",bk,",",ils,",",gap*100,",",elapsed_time
+#	write_file(BestFound['tour'],file_name)
+	write_julia_file(BestFound['tour'],julia_file_name)
 
 instance = random_instance()
 InsertionStep = insertion_step()
