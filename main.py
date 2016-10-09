@@ -230,7 +230,7 @@ def main(id_file):
 
 	#start = 0 #hours
 	#end = 1236 #hours
-	n = 224 #no. elements - 2 (start, end)
+#	n = 224 #no. elements - 2 (start, end)
 
 	#instance = random_instance()
 
@@ -239,7 +239,7 @@ def main(id_file):
 	file_name = path_prefix+'autogen_100/'+'r10'+str(id_file)+'.txt'
 	julia_file_name = path_prefix+'autogen_100/'+'heur_sol.jl'
 
-	Locations,start,end = instance.load_instance(n,file_name)
+	Locations,start,end = instance.load_instance(file_name)
 
 	
 	#print_locations(Locations,start,end)

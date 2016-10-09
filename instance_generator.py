@@ -24,9 +24,9 @@ class random_instance:
 
 		return times
 
-	def load_instance(self, n, file_name):
+	def load_instance(self, file_name):
 
-		n = n+2 # + start and end
+#		n = n+2 # + start and end
 
 		#file = open('c101.txt', 'r') #identify file name
 		file = open(file_name, 'r') #identify file name
@@ -41,6 +41,8 @@ class random_instance:
 
 		self.start = 0
 		self.end = float(new_lines[2][8])
+
+		n = int(new_lines[0][0]);
 
 		for i in range(n):
 			self.Locations.append(location())

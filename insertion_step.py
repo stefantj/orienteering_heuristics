@@ -30,11 +30,12 @@ class insertion_step:
 				#locations[i].arrival = self.estimateArrival(i-1,i,times,start)
 				#locations[i].shift = self.Shift( locations, i , i-1, times, start)
 				locations[i].arrival = self.estimateArrival(ind2,ind1,times,start)
-				locations[i].shift = self.Shift( locations, i , i-1, times, start)
+# Shift is really buggy
+#				locations[i].shift = self.Shift( locations, i , i-1, times, start)
 			else:
 				#locations[i].arrival = self.estimateArrival(i,i+1,times,locations[i-1].leave)
 				locations[i].arrival = self.estimateArrival(ind2,ind1,times,locations[i-1].leave)
-				locations[i].shift = self.Shift( locations, i , i-1, times, locations[i-1].leave)
+#				locations[i].shift = self.Shift( locations, i , i-1, times, locations[i-1].leave)
 
 #			locations[i].wait = 0*self.wait(locations[i].opening,locations[i].arrival)
 			locations[i].leave = locations[i].arrival# + locations[i].wait + locations[i].required_time # req_time
