@@ -1,0 +1,269 @@
+TOUR: 
+Start: 0.0
+End: 5.0
+Locations:
+
+-- location ID: 0
+-- score: 0.0
+-- arrival: 0
+-- dist : 0.0
+-- prev : 0
+-- xval : 0.0
+-- yval : 0.0
+
+-- location ID: 9
+-- score: 0.36
+-- arrival: 0.197989898732
+-- dist : 0.197989898732
+-- prev : 0
+-- xval : 0.14
+-- yval : 0.14
+
+-- location ID: 10
+-- score: 0.0
+-- arrival: 0.347989898732
+-- dist : 0.15
+-- prev : 0.197989898732
+-- xval : 0.14
+-- yval : 0.29
+
+-- location ID: 2
+-- score: 0.78
+-- arrival: 0.487989898732
+-- dist : 0.14
+-- prev : 0.347989898732
+-- xval : 0.0
+-- yval : 0.29
+
+-- location ID: 11
+-- score: 0.15
+-- arrival: 0.685979797464
+-- dist : 0.197989898732
+-- prev : 0.487989898732
+-- xval : 0.14
+-- yval : 0.43
+
+-- location ID: 19
+-- score: 0.99
+-- arrival: 0.835979797464
+-- dist : 0.15
+-- prev : 0.685979797464
+-- xval : 0.29
+-- yval : 0.43
+
+-- location ID: 27
+-- score: 0.4
+-- arrival: 0.975979797464
+-- dist : 0.14
+-- prev : 0.835979797464
+-- xval : 0.43
+-- yval : 0.43
+
+-- location ID: 35
+-- score: 0.64
+-- arrival: 1.11597979746
+-- dist : 0.14
+-- prev : 0.975979797464
+-- xval : 0.57
+-- yval : 0.43
+
+-- location ID: 52
+-- score: 0.91
+-- arrival: 1.43800464123
+-- dist : 0.322024843762
+-- prev : 1.11597979746
+-- xval : 0.86
+-- yval : 0.57
+
+-- location ID: 53
+-- score: 0.54
+-- arrival: 1.57800464123
+-- dist : 0.14
+-- prev : 1.43800464123
+-- xval : 0.86
+-- yval : 0.71
+
+-- location ID: 45
+-- score: 0.62
+-- arrival: 1.72800464123
+-- dist : 0.15
+-- prev : 1.57800464123
+-- xval : 0.71
+-- yval : 0.71
+
+-- location ID: 44
+-- score: 0.26
+-- arrival: 1.86800464123
+-- dist : 0.14
+-- prev : 1.72800464123
+-- xval : 0.71
+-- yval : 0.57
+
+-- location ID: 36
+-- score: 0.63
+-- arrival: 2.00800464123
+-- dist : 0.14
+-- prev : 1.86800464123
+-- xval : 0.57
+-- yval : 0.57
+
+-- location ID: 28
+-- score: 0.99
+-- arrival: 2.14800464123
+-- dist : 0.14
+-- prev : 2.00800464123
+-- xval : 0.43
+-- yval : 0.57
+
+-- location ID: 29
+-- score: 0.93
+-- arrival: 2.28800464123
+-- dist : 0.14
+-- prev : 2.14800464123
+-- xval : 0.43
+-- yval : 0.71
+
+-- location ID: 38
+-- score: 0.33
+-- arrival: 2.49318748651
+-- dist : 0.205182845287
+-- prev : 2.28800464123
+-- xval : 0.57
+-- yval : 0.86
+
+-- location ID: 39
+-- score: 0.93
+-- arrival: 2.63318748651
+-- dist : 0.14
+-- prev : 2.49318748651
+-- xval : 0.57
+-- yval : 1.0
+
+-- location ID: 46
+-- score: 0.61
+-- arrival: 2.83117738525
+-- dist : 0.197989898732
+-- prev : 2.63318748651
+-- xval : 0.71
+-- yval : 0.86
+
+-- location ID: 54
+-- score: 0.7
+-- arrival: 2.98117738525
+-- dist : 0.15
+-- prev : 2.83117738525
+-- xval : 0.86
+-- yval : 0.86
+
+-- location ID: 62
+-- score: 0.91
+-- arrival: 3.12117738525
+-- dist : 0.14
+-- prev : 2.98117738525
+-- xval : 1.0
+-- yval : 0.86
+
+-- location ID: 61
+-- score: 0.37
+-- arrival: 3.27117738525
+-- dist : 0.15
+-- prev : 3.12117738525
+-- xval : 1.0
+-- yval : 0.71
+
+-- location ID: 60
+-- score: 0.51
+-- arrival: 3.41117738525
+-- dist : 0.14
+-- prev : 3.27117738525
+-- xval : 1.0
+-- yval : 0.57
+
+-- location ID: 59
+-- score: 0.43
+-- arrival: 3.55117738525
+-- dist : 0.14
+-- prev : 3.41117738525
+-- xval : 1.0
+-- yval : 0.43
+
+-- location ID: 58
+-- score: 0.41
+-- arrival: 3.69117738525
+-- dist : 0.14
+-- prev : 3.55117738525
+-- xval : 1.0
+-- yval : 0.29
+
+-- location ID: 57
+-- score: 0.02
+-- arrival: 3.84117738525
+-- dist : 0.15
+-- prev : 3.69117738525
+-- xval : 1.0
+-- yval : 0.14
+
+-- location ID: 56
+-- score: 0.75
+-- arrival: 3.98117738525
+-- dist : 0.14
+-- prev : 3.84117738525
+-- xval : 1.0
+-- yval : 0.0
+
+-- location ID: 48
+-- score: 0.58
+-- arrival: 4.12117738525
+-- dist : 0.14
+-- prev : 3.98117738525
+-- xval : 0.86
+-- yval : 0.0
+
+-- location ID: 40
+-- score: 0.52
+-- arrival: 4.27117738525
+-- dist : 0.15
+-- prev : 4.12117738525
+-- xval : 0.71
+-- yval : 0.0
+
+-- location ID: 32
+-- score: 0.67
+-- arrival: 4.41117738525
+-- dist : 0.14
+-- prev : 4.27117738525
+-- xval : 0.57
+-- yval : 0.0
+
+-- location ID: 24
+-- score: 0.61
+-- arrival: 4.55117738525
+-- dist : 0.14
+-- prev : 4.41117738525
+-- xval : 0.43
+-- yval : 0.0
+
+-- location ID: 16
+-- score: 0.47
+-- arrival: 4.69117738525
+-- dist : 0.14
+-- prev : 4.55117738525
+-- xval : 0.29
+-- yval : 0.0
+
+-- location ID: 8
+-- score: 0.4
+-- arrival: 4.84117738525
+-- dist : 0.15
+-- prev : 4.69117738525
+-- xval : 0.14
+-- yval : 0.0
+
+-- location ID: 64
+-- score: 0.0
+-- arrival: 4.98117738525
+-- dist : 0.14
+-- prev : 4.84117738525
+-- xval : 0.0
+-- yval : 0.0
+
