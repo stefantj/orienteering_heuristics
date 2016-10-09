@@ -47,16 +47,16 @@ class random_instance:
 			if i == 0:
 				self.Locations[0].id_location = i
 				self.Locations[0].name = "start"
-				self.Locations[0].opening = self.start
-				self.Locations[0].closing = self.end
-				self.Locations[0].score = 0
+				self.Locations[0].opening = float(self.start)
+				self.Locations[0].closing = float(self.end)
+				self.Locations[0].score = 0*float(new_lines[2][4]); 
 				self.Locations[0].max_shift = 0
 				self.Locations[0].shift = 0
 				self.Locations[0].ratio = 0
 				self.Locations[0].arrival = 0
 				self.Locations[0].leave = 0
-				self.Locations[0].x = new_lines[2][1]
-				self.Locations[0].y = new_lines[2][2]
+				self.Locations[0].x = float(new_lines[2][1])
+				self.Locations[0].y = float(new_lines[2][2])
 				self.Locations[0].required_time = float(new_lines[2][3])
 
 				new_lines.pop(0)
@@ -65,17 +65,17 @@ class random_instance:
 			elif i == n-1:
 				self.Locations[i].id_location = i
 				self.Locations[i].name = "End"
-				self.Locations[i].opening = self.start
-				self.Locations[i].closing = self.end
-				self.Locations[i].score = 0
+				self.Locations[i].opening = float(self.end)*0.9 # Try and force it to do other stuff.
+				self.Locations[i].closing = float(self.end)
+				self.Locations[i].score = 0*float(new_lines[0][4]);
 				self.Locations[i].wait = 0
 				self.Locations[i].max_shift = 0
 				self.Locations[i].shift = 0
 				self.Locations[i].ratio = 0
 				self.Locations[i].arrival = 0
 				self.Locations[i].leave = 0
-				self.Locations[i].x = new_lines[0][1]
-				self.Locations[i].y = new_lines[0][2]
+				self.Locations[i].x = float(new_lines[0][1]) # Loads in start point as end point
+				self.Locations[i].y = float(new_lines[0][2])
 				self.Locations[i].required_time = float(new_lines[0][3])
 
 			else:
@@ -90,9 +90,10 @@ class random_instance:
 				self.Locations[i].ratio = 0
 				self.Locations[i].arrival = 0
 				self.Locations[i].leave = 0
-				self.Locations[i].x = new_lines[i][1]
-				self.Locations[i].y = new_lines[i][2]
+				self.Locations[i].x = float(new_lines[i][1])
+				self.Locations[i].y = float(new_lines[i][2])
 				self.Locations[i].required_time = float(new_lines[i][3])
+
 
 		return self.Locations, self.start, self.end
 
