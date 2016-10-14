@@ -51,10 +51,10 @@ class random_instance:
 				self.Locations[0].name = "start"
 				self.Locations[0].opening = float(self.start)
 				self.Locations[0].closing = float(self.end)
-				self.Locations[0].score = 0*float(new_lines[2][4]); 
+				self.Locations[0].score = float(new_lines[2][4]); 
 				self.Locations[0].max_shift = 0
 				self.Locations[0].shift = 0
-				self.Locations[0].ratio = 0
+				self.Locations[0].ratio = self.Locations[0].score;
 				self.Locations[0].arrival = 0
 				self.Locations[0].leave = 0
 				self.Locations[0].x = float(new_lines[2][1])
@@ -69,11 +69,11 @@ class random_instance:
 				self.Locations[i].name = "End"
 				self.Locations[i].opening = float(self.end)*0.9 # Try and force it to do other stuff.
 				self.Locations[i].closing = float(self.end)
-				self.Locations[i].score = 0*float(new_lines[0][4]);
+				self.Locations[i].score = float(new_lines[0][4]);
 				self.Locations[i].wait = 0
 				self.Locations[i].max_shift = 0
 				self.Locations[i].shift = 0
-				self.Locations[i].ratio = 0
+				self.Locations[i].ratio = self.Locations[i].score;
 				self.Locations[i].arrival = 0
 				self.Locations[i].leave = 0
 				self.Locations[i].x = float(new_lines[0][1]) # Loads in start point as end point
@@ -89,7 +89,7 @@ class random_instance:
 				self.Locations[i].wait = 0
 				self.Locations[i].max_shift = 0
 				self.Locations[i].shift = 0
-				self.Locations[i].ratio = 0
+				self.Locations[i].ratio = self.Locations[i].score;
 				self.Locations[i].arrival = 0
 				self.Locations[i].leave = 0
 				self.Locations[i].x = float(new_lines[i][1])

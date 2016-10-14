@@ -156,7 +156,7 @@ class insertion_step:
 		return Locations
 
 	def select_to_insert(self,Locations):
-		percentage = 30 #percent
+		percentage = 10 #percent
 		ratios = [e.ratio for e in Locations]
 		#Get radio value to select potential locations to choose
 		selection_point = sum(ratios)*percentage/100
@@ -257,8 +257,9 @@ class insertion_step:
 		#print len(Locations)
 		for l in range(len(Locations)-1):
 			Locations_tmp = [Locations[l],selected,Locations[l+1]]
-			shift = self.Shift(Locations_tmp, l+1, l, times, start)
-			ratio_list.append(selected.score*1.0/shift if shift > 0 else 1)
+#			shift = self.Shift(Locations_tmp, l+1, l, times, start)
+#			ratio_list.append(selected.score*1.0/shift if shift > 0 else 1)
+			ratio_list.append(selected.score);
 
 		#print "len ratio_list: ",len(ratio_list)
 		selected_index = shift_list.index(max(ratio_list))+1
@@ -275,17 +276,20 @@ class insertion_step:
 	def simulate_insertion(self, Locations, selected, times):
 		potential_inserts = []
 		local_information = {}
+# This is the problem: Trying to use a 1-step greedy approach to find the feasible path to nodes.
 		for l in range(1,len(Locations)-1):
 			local = [0,-1,-1]
 			for s in range(len(selected)-1):
 				tmp = [ selected[s],Locations[l],selected[s+1] ]
 				#print "i:",selected[s].id_location," j:",Locations[l].id_location," k: ",selected[s+1].id_location
 				
-				shift = self.ShiftSim(tmp, selected[s].id_location,Locations[l].id_location,selected[s+1].id_location, times)
-				ratio = Locations[l].score*1.0/shift if shift > 0 else 1
+#				shift = self.ShiftSim(tmp, selected[s].id_location,Locations[l].id_location,selected[s+1].id_location, times)
+				ratio = Locations[l].score#*1.0/shift if shift > 0 else 1
+				if ratio > 0:
+					print "Considering positive insertion "
 				
 				#validate time windows
-				
+				# Search for maximum feasible ratio:	
 				if self.validate_time_windows(selected,Locations[l], s, times):
 					#print "TIME WINDOW VALIDATED: ",s
 					if ratio > local[1]:
@@ -293,6 +297,9 @@ class insertion_step:
 						local[1] = ratio
 						local[2] = s #after this index
 					#print "--- ratio: ", ratio
+				else:
+					if ratio > 0:
+						print "Does not fit"
 				
 				
 				"""
@@ -302,7 +309,7 @@ class insertion_step:
 					local[2] = s #after this index
 					print "--- ratio: ", ratio
 				"""
-
+			# IF found a maximum:
 			if local[1] != -1:
 				#print "local: ",local
 				potential_inserts.append(local[0])
@@ -382,9 +389,16 @@ class insertion_step:
 			return []
 
 		ratios = [e.ratio for e in Locations]
-		#Get radio value to select potential locations to choose
+		#Get ratio value to select potential locations to choose
 		ratio_max = max(ratios)
-		selection_point = ratio_max - 0.3*(ratio_max - min(ratios))
+		if ratio_max==0:
+			scores = [e.score for e in Locations]
+			score_max = max(scores)
+			print "Max ratio is zero. Max score is ", score_max
+#		else:
+#			print "Nonzero maximum"
+			
+		selection_point = ratio_max - 0.1*(ratio_max - min(ratios))
 		potential_locations = [e for e in Locations if e.ratio >= selection_point]
 
 		len_pot = len(potential_locations)-1

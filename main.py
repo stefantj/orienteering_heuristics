@@ -93,7 +93,8 @@ def write_julia_file(Locations,file_name):
 def getTourRatio(Locations):
 	ratio = 0
 	for e in Locations:
-		ratio += e.ratio
+		#ratio += e.ratio
+		ratio += e.score
 
 	return ratio
 
@@ -247,6 +248,11 @@ def main(id_file):
 #   Times is the cost. 
 	times = instance.generate_times_for_instances(len(Locations),Locations)
 
+	scores = [e.score for e in Locations]
+	score_max = max(scores)
+	print "Maximum score: ", score_max
+    
+
 	#print_locations(Locations)
 
 	##########################
@@ -304,6 +310,9 @@ def main(id_file):
 		print_locations(RestOfLocations)
 		print "--- </RestOfLocations> ---"
 		"""
+		scores = [e.ratio for e in Locations]
+		score_max = max(scores)
+		print "Maximum score: ", score_max
 
 		#CompleteTour
 		if TourFlag == 1:
@@ -365,10 +374,10 @@ def main(id_file):
 	if ils==0:
 		ils=1;
 	gap = (ils-bk)/ils
-#	print "OriginalSolution: ", getTourRatio( OriginalSolution )
-#	print "EnhancedSolution: ", getTourRatio( BestFound['tour'] )
+	print "OriginalSolution: ", getTourRatio( OriginalSolution )
+	print "EnhancedSolution: ", getTourRatio( BestFound['tour'] )
 #	print nombre_instancia,", ",bk,",",ils,",",gap*100,",",elapsed_time
-#	write_file(BestFound['tour'],file_name)
+	write_file(BestFound['tour'],file_name)
 	write_julia_file(BestFound['tour'],julia_file_name)
 
 instance = random_instance()
