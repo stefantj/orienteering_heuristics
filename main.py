@@ -240,17 +240,17 @@ def main(id_file):
 	file_name = path_prefix+'autogen_100/'+'r10'+str(id_file)+'.txt'
 	julia_file_name = path_prefix+'autogen_100/'+'heur_sol.jl'
 
-	Locations,start,end = instance.load_instance(file_name)
+	Locations,start,end,times = instance.load_instance(file_name)
 
 	
 	#print_locations(Locations,start,end)
 
 #   Times is the cost. 
-	times = instance.generate_times_for_instances(len(Locations),Locations)
+#	times = instance.generate_times_for_instances(len(Locations),Locations)
 
 	scores = [e.score for e in Locations]
 	score_max = max(scores)
-	print "Maximum score: ", score_max
+#	print "Maximum score: ", score_max
     
 
 	#print_locations(Locations)
@@ -312,7 +312,7 @@ def main(id_file):
 		"""
 		scores = [e.ratio for e in Locations]
 		score_max = max(scores)
-		print "Maximum score: ", score_max
+#		print "Maximum score: ", score_max
 
 		#CompleteTour
 		if TourFlag == 1:

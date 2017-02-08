@@ -97,7 +97,13 @@ class random_instance:
 				self.Locations[i].required_time = float(new_lines[i][3])
 
 
-		return self.Locations, self.start, self.end
+		times = [[0 for i in range(n)] for j in range(n)]
+		for i in range(n):
+			for j in range(n):
+				times[i][j] = float(new_lines[n-1+i][j])
+
+
+		return self.Locations, self.start, self.end, times
 
 	def generate_times(self, n):
 

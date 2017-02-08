@@ -285,8 +285,6 @@ class insertion_step:
 				
 #				shift = self.ShiftSim(tmp, selected[s].id_location,Locations[l].id_location,selected[s+1].id_location, times)
 				ratio = Locations[l].score#*1.0/shift if shift > 0 else 1
-				if ratio > 0:
-					print "Considering positive insertion "
 				
 				#validate time windows
 				# Search for maximum feasible ratio:	
@@ -297,9 +295,6 @@ class insertion_step:
 						local[1] = ratio
 						local[2] = s #after this index
 					#print "--- ratio: ", ratio
-				else:
-					if ratio > 0:
-						print "Does not fit"
 				
 				
 				"""
@@ -391,10 +386,10 @@ class insertion_step:
 		ratios = [e.ratio for e in Locations]
 		#Get ratio value to select potential locations to choose
 		ratio_max = max(ratios)
-		if ratio_max==0:
-			scores = [e.score for e in Locations]
-			score_max = max(scores)
-			print "Max ratio is zero. Max score is ", score_max
+#		if ratio_max==0:
+#			scores = [e.score for e in Locations]
+#			score_max = max(scores)
+#			print "Max ratio is zero. Max score is ", score_max
 #		else:
 #			print "Nonzero maximum"
 			
